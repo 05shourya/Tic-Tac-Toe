@@ -77,9 +77,13 @@ win = False
 def sum(a, b, c):
     return a + b + c
 
+# winChck Function will check if someone has won the game or not;
+
 
 def winCheck(XPosition, OPosition):
     global win
+    # creating a array in which all the win possibilities will be mentioned ;
+    # The array will contain all the combination of positions where the user will win the match;
     wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
             [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
@@ -92,12 +96,16 @@ def winCheck(XPosition, OPosition):
             print("O Won")
 
 
+# firing getInput function in loop till anyone wins or the game ends in a draw
+# after it fires the function, it will then call winCheck function to check if someone has won or not
+chance = 1
 while True:
-    getInput()
-    # if XPosition.count(0) == 4:
-    #     print('Game Over')
-    #     break
-    # print(win)
-    winCheck(XPosition, OPosition)
-    if win == True:
+    if chance <= 9:
+        getInput()
+        winCheck(XPosition, OPosition)
+        if win == True:
+            break
+        chance = chance + 1
+    else:
+        print("Game Draw")
         break
