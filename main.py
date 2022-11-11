@@ -36,7 +36,10 @@ def getInput():
             print("Turn for X")
             Position = int(
                 input("Input the position where you want to place 'X' : "))
-            if XPosition[Position - 1] == 0 and OPosition[Position - 1] == 0:
+            if Position <= 0 or Position > 9:
+                print("Invalid Input")
+                xTurn()
+            elif XPosition[Position - 1] == 0 and OPosition[Position - 1] == 0:
                 XPosition[Position - 1] = 1
             else:
                 print("Place Already Occupied !")
@@ -52,7 +55,10 @@ def getInput():
             print("Turn for O")
             Position = int(
                 input("Enter the position where you want to place 'O' : "))
-            if XPosition[Position - 1] == 0 and OPosition[Position - 1] == 0:
+            if Position <= 0 or Position > 9:
+                print("Invalid Input")
+                oTurn()
+            elif XPosition[Position - 1] == 0 and OPosition[Position - 1] == 0:
                 OPosition[Position - 1] = 1
             else:
                 print("Place Already Occupied !")
@@ -62,6 +68,7 @@ def getInput():
         turn = True
 
     printBoard(XPosition, OPosition)
+    # print(XPosition,  "\n",  OPosition)
 
 
 win = False
@@ -73,8 +80,8 @@ def sum(a, b, c):
 
 def winCheck(XPosition, OPosition):
     global win
-    wins = [[0, 1, 2], [2, 5, 8], [8, 6, 7], [7, 3, 0],
-            [0, 4, 8], [2, 4, 7], [3, 4, 5], [1, 4, 6]]
+    wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
+            [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
     for i in wins:
         if sum(XPosition[i[0]], XPosition[i[1]], XPosition[i[2]]) == 3:
